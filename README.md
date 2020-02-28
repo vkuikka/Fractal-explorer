@@ -10,3 +10,8 @@ Colors can be changed with up and down arrows.
 examples:
 
 ![fractal image 1](images/img1.png)
+![fractal image 2](images/img2.png)
+![fractal image 3](images/img3.png)
+![fractal image 4](images/img4.png)
+![fractal image 5](images/img5.png)
+![fractal image 6](images/img6.png)
