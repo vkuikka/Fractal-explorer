@@ -6,7 +6,7 @@
 #    By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/08 13:46:11 by vkuikka           #+#    #+#              #
-#    Updated: 2020/01/22 16:06:37 by vkuikka          ###   ########.fr        #
+#    Updated: 2020/11/16 20:16:19 by vkuikka          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,8 @@ INCLUDE = libft/includes
 all: $(NAME)
 
 $(NAME):
+	gcc -o $(NAME) -Wall -Wextra -Werror -O3 $(FILES) $(LIBFT) -I $(INCLUDE) $(FDF) $(ASD)
 	@make -C libft
-	gcc -o $(NAME) -Wall -Wextra -Werror $(FILES) $(LIBFT) -I $(INCLUDE) $(FDF) $(ASD)
 
 no:
 	gcc -o $(NAME) $(FILES) $(LIBFT) -I $(INCLUDE) $(FDF)

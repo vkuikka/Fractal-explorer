@@ -6,7 +6,7 @@
 /*   By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 20:10:30 by vkuikka           #+#    #+#             */
-/*   Updated: 2020/01/22 15:57:20 by vkuikka          ###   ########.fr       */
+/*   Updated: 2020/03/12 20:01:23 by vkuikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_get_info(int key, int *info, double *location)
 		exit(1);
 	if (key == -1000 && (location[0] = 750))
 		location[1] = 500;
-	if (key == 126 && info[10] < 5)
+	if (key == 126 && info[10] < 10)
 		info[10]++;
 	if (key == 125 && info[10] > 1)
 		info[10]--;

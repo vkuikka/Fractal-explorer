@@ -6,7 +6,7 @@
 /*   By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 14:04:26 by vkuikka           #+#    #+#             */
-/*   Updated: 2020/01/22 14:04:50 by vkuikka          ###   ########.fr       */
+/*   Updated: 2020/03/12 20:24:52 by vkuikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,16 @@ void	ft_theme_two(int i, int *info)
 
 int		ft_get_color(int *info, int i, t_comp x, t_comp y)
 {
+	if (info[10] == 10)
+		info[2] = y.real * (x.imag * 21000);
+	if (info[10] == 9)
+		info[2] = R_HEX((x.real * i / y.real) * x.imag - (x.imag * i / y.imag) * x.real);
+	if (info[10] == 8)
+		info[2] = ((x.real - y.real) * i) / 2;
+	if (info[10] == 7)
+		info[2] = (x.real - y.real) * 40000;
+	if (info[10] == 6)
+		ft_theme_two(i * x.real / 2, info);
 	if (info[10] == 5)
 		info[2] += i - info[7];
 	if (info[10] == 4)
