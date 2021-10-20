@@ -6,7 +6,7 @@
 /*   By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/07 22:06:27 by vkuikka           #+#    #+#             */
-/*   Updated: 2020/02/28 15:24:40 by vkuikka          ###   ########.fr       */
+/*   Updated: 2021/10/21 02:36:46 by vkuikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,31 +18,57 @@
 # define R_VAL(x) ((x) / 65536)
 # define G_VAL(x) (((x) - ((x) / 65536) * 65536) / 256)
 # define B_VAL(x) ((x) - ((x) / 256) * 256)
-# include "mlx.h"
+# define RES_X 800
+# define RES_Y (int)(RES_X * (2 / 3.0))
 # include "libft.h"
+# include "SDL2/SDL.h"
 # include <fcntl.h>
 # include <math.h>
 
-typedef struct	s_nums
+typedef enum e_mode
+{
+	MANDELBROT = 0,
+	JULIA,
+	BURNING_SHIP
+}			t_mode;
+
+
+typedef struct	s_comp
 {
 	double		real;
 	double		imag;
 }				t_comp;
 
-int				main_fractal(int key, void **params, int x, int y);
-int				ft_stop(int code);
-int				ft_deal_loop(void **params);
-int				ft_mandelbrot(t_comp c, t_comp z, int *info);
-int				ft_julia(t_comp c, t_comp z, int *info, double *location);
-int				ft_burning_ship(t_comp c, t_comp z, int *info);
-int				ft_get_color(int *info, int i, t_comp x, t_comp y);
-void			ft_pixel_put_img(char *pixel_color,
-				int *info, int *xy, int color);
-void			ft_fractal(int *info, char *pixel_colors,
-				int *xy, double *location);
-int				ft_deal_key(int key, void **params);
-int				ft_deal_button(int key, int x, int y, void **params);
-int				ft_deal_mouse(int x, int y, void **params);
-int				*ft_save_mode(void);
+typedef struct		s_vec2
+{
+	float			x;
+	float			y;
+}					t_vec2;
+
+typedef struct		s_settings
+{
+	unsigned int	mouse_mode;
+	unsigned int	iters;
+	unsigned int	theme;
+	float			scale;
+	t_vec2			mouse;
+	// t_vec2			location;
+	t_mode			mode;
+}					t_settings;
+
+typedef struct		s_window
+{
+	SDL_Renderer	*SDLrenderer;
+	SDL_Window		*SDLwindow;
+	SDL_Texture		*texture;
+	unsigned int	*frame_buffer;
+}					t_window;
+
+int			mandelbrot(t_comp c, t_comp z, t_settings *s);
+int			julia(t_comp c, t_comp z, t_settings *s);
+int			burning_ship(t_comp c, t_comp z, t_settings *s);
+
+void		fractal(t_window *window, t_settings *settings);
+int			themes(t_settings *s, int i, t_comp x, t_comp y);
 
 #endif
