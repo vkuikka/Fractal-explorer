@@ -1,24 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_factorial.c                                     :+:      :+:    :+:   */
+/*   ft_add_str.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 18:17:06 by vkuikka           #+#    #+#             */
-/*   Updated: 2019/12/02 18:26:44 by vkuikka          ###   ########.fr       */
+/*   Created: 2020/09/08 15:13:27 by vkuikka           #+#    #+#             */
+/*   Updated: 2020/09/08 15:13:28 by vkuikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_factorial(int num)
-{
-	int		i;
+#include "libft.h"
 
-	i = num - 1;
-	while (i)
+char	**ft_add_str(char *str, char **arr, unsigned int arrlen)
+{
+	char			**new;
+	unsigned int	i;
+
+	i = 0;
+	if (!str)
+		return (arr);
+	if (!arr)
+		arrlen = 0;
+	while (i < arrlen && arr[i])
+		i++;
+	arrlen = i + 1;
+	new = (char **)malloc(sizeof(char *) * arrlen);
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (i < arrlen - 1)
 	{
-		num *= i;
-		i--;
+		new[i] = ft_strdup(arr[i]);
+		i++;
 	}
-	return (num);
+	new[i] = ft_strdup(str);
+	return (new);
 }

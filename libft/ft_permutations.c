@@ -12,15 +12,13 @@
 
 #include "libft.h"
 
-int		**ft_permutations(int a[], int size, int n)
+int	**ft_permutations(int a[], int size, int n)
 {
 	int			i;
-	int			tmp;
 	static int	**res = NULL;
 	static int	res_i = 0;
 
 	i = 0;
-	tmp = 0;
 	if (!res)
 		res = ft_new_int_arr(n, ft_factorial(n));
 	if (size == 1)

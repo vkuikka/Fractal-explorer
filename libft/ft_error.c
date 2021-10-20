@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_factorial.c                                     :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: rpehkone <rpehkone@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 18:17:06 by vkuikka           #+#    #+#             */
-/*   Updated: 2019/12/02 18:26:44 by vkuikka          ###   ########.fr       */
+/*   Created: 2020/08/15 21:05:33 by vkuikka           #+#    #+#             */
+/*   Updated: 2021/04/06 19:31:04 by rpehkone         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_factorial(int num)
-{
-	int		i;
+#include "libft.h"
 
-	i = num - 1;
-	while (i)
-	{
-		num *= i;
-		i--;
-	}
-	return (num);
+void	ft_error(char *message)
+{
+	ft_putstr("error: ");
+	ft_putstr(message);
+	ft_putchar('\n');
+	exit(1);
 }

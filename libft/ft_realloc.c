@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_factorial.c                                     :+:      :+:    :+:   */
+/*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vkuikka <vkuikka@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/02 18:17:06 by vkuikka           #+#    #+#             */
-/*   Updated: 2019/12/02 18:26:44 by vkuikka          ###   ########.fr       */
+/*   Created: 2021/06/20 10:54:29 by vkuikka           #+#    #+#             */
+/*   Updated: 2021/06/20 11:43:10 by vkuikka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_factorial(int num)
-{
-	int		i;
+#include "libft.h"
 
-	i = num - 1;
-	while (i)
+void	*ft_realloc(void *ptr, size_t size, size_t new_size)
+{
+	void	*res;
+	size_t	i;
+
+	i = 0;
+	res = (void *)malloc(new_size);
+	if (!res)
+		return (NULL);
+	while (i < new_size)
 	{
-		num *= i;
-		i--;
+		if (i < size && ptr)
+			((char *)res)[i] = ((char *)ptr)[i];
+		else
+			((char *)res)[i] = 0;
+		i++;
 	}
-	return (num);
+	if (ptr)
+		free(ptr);
+	return (res);
 }
