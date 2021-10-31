@@ -1,11 +1,12 @@
 # fract_ol
-Hive project for printing fractals.
+Hive fractal explorer project.
 
-This project needs the mlx library provided by the school to compile. It is used to open a window, color pixels in the window and get input from mouse and keyboard.
+~~This project needs the mlx library provided by the school to compile. It is used to open a window, color pixels in the window and get input from mouse and keyboard.~~
+Refactored for SDL2: ```brew install sdl2``` and ```make```
 
-Move the image by dragging with mouse buttons and zoom using scroll wheel.
-Iterations can be increased and decresed with right and left arrows on keyboard.
-Colors can be changed with up and down arrows.
+Move by clicking and dragging with mouse and zoom using bracket keys.
+Iterations can be increased and decresed with minus and equals keys.
+Colors can be changed with comma and period keys. (broken after sdl2 refactor)
 
 examples:
 
