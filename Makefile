@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME = fractol
-SRC = main.c calculations.c colors.c fractal.c
+SRC = main.c init.c input.c calculations.c colors.c fractal.c
 LIBFT = libft/libft.a
 INCLUDE = libft/includes
 SDL2 = `sdl2-config --cflags` `sdl2-config --libs`

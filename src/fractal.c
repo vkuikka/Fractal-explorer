@@ -14,17 +14,13 @@
 
 t_comp	fractal_loc(t_comp *min, t_comp *max, t_settings *s)
 {
-	static t_vec2	mouse_loc = {0, 0};
 	double			tmp;
 	t_comp			factor;
 
-	// if (location)
-		// mouse_loc = s->location;
-	// s->mouse = mouse_loc;
-	tmp = (double)3 / RES_X * (s->mouse.x * s->scale - RES_X / 2) / s->scale;
+	tmp = (double)3 / RES_X * (s->pos.x * s->scale - RES_X / 2) / s->scale;
 	min[0].real = -2 + tmp;
 	max[0].real = 1 + tmp;
-	tmp = (double)2 / RES_Y * (s->mouse.y * s->scale - RES_Y / 2) / s->scale;
+	tmp = (double)2 / RES_Y * (s->pos.y * s->scale - RES_Y / 2) / s->scale;
 	min[0].imag = -1 - tmp;
 	max[0].imag = 1 - tmp;
 	factor.real = (max[0].real - min[0].real) / (RES_X * s->scale);
@@ -43,7 +39,7 @@ int		choose_fractal(t_comp c, t_comp z, t_settings *settings)
 	return (0);
 }
 
-void	fractal(t_window *window, t_settings *settings)
+static void	fractal(t_window *window, t_settings *settings, int thread)
 {
 	t_comp	z;
 	t_comp	c;
@@ -54,7 +50,7 @@ void	fractal(t_window *window, t_settings *settings)
 	int		color;
 
 	factor = fractal_loc(&min, &max, settings);
-	i.y = 0;
+	i.y = thread;
 	while (i.y < RES_Y)
 	{
 		c.imag = max.imag - i.y * factor.imag;
@@ -71,6 +67,16 @@ void	fractal(t_window *window, t_settings *settings)
 				window->frame_buffer[(int)(i.x + i.y * RES_X)] = color;
 			i.x++;
 		}
-		i.y++;
+		i.y += THREAD_AMOUNT;
 	}
 }
+
+int	fractal_thread(void *data_pointer)
+{
+	t_rthread	*thread;
+
+	thread = data_pointer;
+	fractal(thread->window, thread->settings, thread->id);
+	return (1);
+}
+
