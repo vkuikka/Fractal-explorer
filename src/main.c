@@ -1,12 +1,12 @@
 #include "fractol.h"
 
-static void	wait_threads(SDL_Thread *threads[THREAD_AMOUNT])
+static void	wait_threads(SDL_Thread *threads[THREAD_AMOUNT], int thread_amount)
 {
 	int	ret;
 	int	i;
 
 	i = 0;
-	while (i < THREAD_AMOUNT)
+	while (i < thread_amount)
 	{
 		SDL_WaitThread(threads[i], &ret);
 		i++;
@@ -20,7 +20,7 @@ static void	create_threads(t_settings *settings, t_window *window)
 	int			i;
 
 	i = 0;
-	while (i < THREAD_AMOUNT)
+	while (i < settings->thread_amount)
 	{
 		thread_data[i].id = i;
 		thread_data[i].settings = settings;
@@ -29,7 +29,7 @@ static void	create_threads(t_settings *settings, t_window *window)
 				(void *)&thread_data[i]);
 		i++;
 	}
-	wait_threads(threads);
+	wait_threads(threads, settings->thread_amount);
 }
 
 void	render(t_window *window, t_settings *settings)
@@ -56,6 +56,7 @@ int			main()
 	init_settings(&settings);
 	while (1)
 	{
+		settings.color = 0;
 		input(window, &settings);
 		render(window, &settings);
 	}

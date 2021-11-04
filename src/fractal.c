@@ -61,13 +61,16 @@ static void	fractal(t_window *window, t_settings *settings, int thread)
 			z.real = c.real;
 			z.imag = c.imag;
 			color = choose_fractal(c, z, settings);
-			if (settings->theme == 5)
-				window->frame_buffer[(int)(i.x + i.y * RES_X)] += color;
-			else
+			if (color)
 				window->frame_buffer[(int)(i.x + i.y * RES_X)] = color;
+			else
+			{
+				window->frame_buffer[(int)(i.x + i.y * RES_X)] = settings->inside_color;
+				settings->color = 0;
+			}
 			i.x++;
 		}
-		i.y += THREAD_AMOUNT;
+		i.y += settings->thread_amount;
 	}
 }
 

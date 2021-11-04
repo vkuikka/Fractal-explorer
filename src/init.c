@@ -5,7 +5,7 @@ static SDL_Texture	*empty_texture(SDL_Renderer *renderer)
 	SDL_Texture	*texture;
 
 	texture = NULL;
-	texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888,
+	texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGB888,
 			SDL_TEXTUREACCESS_STREAMING, RES_X, RES_Y);
 	SDL_SetRenderTarget(renderer, texture);
 	SDL_SetTextureBlendMode(texture, SDL_BLENDMODE_BLEND);
@@ -22,7 +22,7 @@ void	init_window(t_window **window)
 	*window = (t_window *)malloc(sizeof(t_window));
 	if (!*window)
 		ft_error("memory allocation failed\n");
-	window[0]->SDLwindow = SDL_CreateWindow("SIM",
+	window[0]->SDLwindow = SDL_CreateWindow("MANDELBROT",
 			SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 			RES_X, RES_Y, SDL_WINDOW_ALLOW_HIGHDPI);
 	if (!window[0]->SDLwindow)
@@ -39,12 +39,13 @@ void	init_settings(t_settings *settings)
 {
 	settings->mouse.x = 0;
 	settings->mouse.y = 0;
-
-	settings->theme = 2;
+	settings->theme = 1;
 	settings->mode = MANDELBROT;
 	settings->scale = 1;
 	settings->iters = 10;
-
+	settings->mouse_mode = 1;
+	settings->thread_amount = THREAD_AMOUNT;
+	settings->inside_color = 0xffffff;
 	settings->pos.x = RES_X / 2;
 	settings->pos.y = RES_Y / 2;
 }
