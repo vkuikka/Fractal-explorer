@@ -1,12 +1,15 @@
 # fract_ol
 Hive fractal explorer project.
 
-~~This project needs the mlx library provided by the school to compile. It is used to open a window, color pixels in the window and get input from mouse and keyboard.~~
-Refactored for SDL2: ```brew install sdl2``` and ```make```
+Refactored from mlx library provided by school for SDL2: ```brew install sdl2``` and ```make```
 
-Move by clicking and dragging with mouse and zoom using bracket keys.
-Iterations can be increased and decresed with minus and equals keys.
-Colors can be changed with comma and period keys. (broken after sdl2 refactor)
+Controls on US keyboard:
+- Change fractals with ```1```, ```2``` and ```3``` keys.
+- Move by clicking and dragging with mouse and zoom using ```[``` and ```]```
+- Iterations can be increased and decresed with ```-``` and ```=```
+- Colors can be changed with ```,``` and ```.```
+- Julia set position can be changed by changing mouse mode with ```M```
+- Change between single threaded and multithreaded mode with ```T``` (some colors work better in single thread).
 
 examples:
 
